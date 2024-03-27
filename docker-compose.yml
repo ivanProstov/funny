@@ -1,0 +1,22 @@
+version: '3'
+networks:
+  funny_network:
+    driver: bridge
+volumes:
+  mongodb_data_container:
+    driver: local
+services:
+  mongodb:
+    image: mongo:5.0.10
+
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=12345Qwer
+    ports:
+      - "27017:27017"
+    expose:
+      - 27017
+    volumes:
+      - mongodb_data_container:/data/db
+    networks:
+      - funny_network
